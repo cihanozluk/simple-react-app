@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import Counter from "./components/Counter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [counter, setCounter] = useState(0);
+  const [pagecolor, setPagecolor] = useState("");
+
+  const ChangePageColor = () => {
+    var bodyElt = document.querySelector("body");
+    if (counter === 10) {
+      setPagecolor("yellow");
+      bodyElt.style.backgroundColor = pagecolor;
+    } else {
+      setPagecolor("white");
+      bodyElt.style.backgroundColor = pagecolor;
+    }
+  };
+
+  useEffect(() => {
+    ChangePageColor();
+  }, [counter, pagecolor]);
+  return <Counter counter={counter} setCounter={setCounter}></Counter>;
 }
 
 export default App;
